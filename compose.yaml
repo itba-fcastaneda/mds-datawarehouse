@@ -1,0 +1,41 @@
+
+version: "3.7"
+
+services: 
+    postgres:
+        image: postgres
+        container_name: postgres_container
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres    
+        volumes: 
+            - ./postgres_data:/var/lib/postgresql/data/
+        networks:
+        - postgres-network
+        ports:
+            - "5432:5432"
+
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: pgadmin_container
+        restart: unless-stopped
+        environment:
+            PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+            PGADMIN_DEFAULT_PASSWORD: supersecret
+        networks:
+        - postgres-network
+        ports:
+            - "8080:80"
+        volumes: 
+            - ./pgadmin_data:/var/lib/pgadmin
+        depends_on: 
+            - postgres
+
+volumes: 
+    postgres_data:
+    pgadmin_data:
+
+networks:
+    postgres-network:
+        driver: bridge
