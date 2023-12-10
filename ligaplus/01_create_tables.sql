@@ -1,4 +1,3 @@
-TABLESPACE pg_default;
 
 CREATE TABLE IF NOT EXISTS public."User"
 (
@@ -35,10 +34,10 @@ CREATE TABLE IF NOT EXISTS public."Subscription"
     "Id" integer NOT NULL,
     "Type" character(40) COLLATE pg_catalog."default" NOT NULL,
     "Description" character(80) COLLATE pg_catalog."default",
-    CONSTRAINT "Segment_pkey" PRIMARY KEY ("Id")
+    CONSTRAINT "Subscription_pkey" PRIMARY KEY ("Id")
 );
 
-CREATE TABLE public."UserSubscription"
+CREATE TABLE IF NOT EXISTS public."UserSubscription"
 (
     "UserId" integer NOT NULL,
     "SubscriptionId" integer NOT NULL,
@@ -154,8 +153,6 @@ ALTER TABLE IF EXISTS public."ContentRating" OWNER to postgres;
 ALTER TABLE IF EXISTS public."ContentUsage" OWNER to postgres;
 ALTER TABLE IF EXISTS public."ContentHit" OWNER to postgres;
 
-ALTER TABLE IF EXISTS public."Subscription" OWNER to postgres;
-ALTER TABLE IF EXISTS public."Subscription" OWNER to postgres;
 
 
 
