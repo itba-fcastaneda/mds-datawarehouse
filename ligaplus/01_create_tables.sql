@@ -81,6 +81,63 @@ CREATE TABLE IF NOT EXISTS public."Position"
     CONSTRAINT "Position_pkey" PRIMARY KEY ("Id")
 );
 
+
+CREATE TABLE IF NOT EXISTS public."SearchResponse"
+(
+    "SearchId" integer NOT NULL,
+    "ContentId" integer NOT NULL,
+    "Ranking" integer NOT NULL,
+     PRIMARY KEY ("SearchId", "ContentId" )
+);
+
+CREATE TABLE IF NOT EXISTS public."UserSearch"
+(
+    "Id" integer NOT NULL,
+    "UserId" integer NOT NULL,
+    "TimeId" integer NOT NULL,
+    "Query" character(128) COLLATE pg_catalog."default",
+    CONSTRAINT "UserSearch_pkey" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS public."UserRecommendation"
+(
+    "Id" integer NOT NULL,
+    "UserId" integer NOT NULL,
+    "TimeId" integer NOT NULL,
+    "ContentId" integer NOT NULL,
+    "PositionId" integer NOT NULL,
+    CONSTRAINT "UserRecommendation_pkey" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS public."ContentRating"
+(
+    "ContentId" integer NOT NULL,
+    "UserId" integer NOT NULL,
+    "TimeId" integer NOT NULL,
+    "Rating" integer NOT NULL,
+    PRIMARY KEY ( "ContentId", "UserId")
+);
+
+CREATE TABLE IF NOT EXISTS public."ContentUsage"
+(
+    "ContentId" integer NOT NULL,
+    "UserId" integer NOT NULL,
+    "TimeId" integer NOT NULL,
+    "Seconds" integer NOT NULL,
+    PRIMARY KEY ( "ContentId", "UserId",  "TimeId")
+);
+
+CREATE TABLE IF NOT EXISTS public."ContentHit"
+(
+    "ContentId" integer NOT NULL,
+    "UserId" integer NOT NULL,
+    "TimeId" integer NOT NULL,
+    "SearchId" integer NOT NULL,
+    "RecommendationId" integer NOT NULL,
+    PRIMARY KEY ( "ContentId", "UserId",  "TimeId")
+);
+
+
 ALTER TABLE IF EXISTS public."User" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Location" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Segment" OWNER to postgres;
@@ -90,9 +147,14 @@ ALTER TABLE IF EXISTS public."Category" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Content" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Time" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Position" OWNER to postgres;
+ALTER TABLE IF EXISTS public."SearchResponse" OWNER to postgres;
+ALTER TABLE IF EXISTS public."UserSearch" OWNER to postgres;
+ALTER TABLE IF EXISTS public."UserRecommendation" OWNER to postgres;
+ALTER TABLE IF EXISTS public."ContentRating" OWNER to postgres;
+ALTER TABLE IF EXISTS public."ContentUsage" OWNER to postgres;
+ALTER TABLE IF EXISTS public."ContentHit" OWNER to postgres;
 
-
-
+ALTER TABLE IF EXISTS public."Subscription" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Subscription" OWNER to postgres;
 
 
