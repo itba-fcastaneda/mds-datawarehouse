@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS public."Content"
 (
     "Id" integer NOT NULL,
     "CategoryId" integer NOT NULL,
-    "Description" character(80) COLLATE pg_catalog."default" NOT NULL,
-    "Duration" date NOT NULL,
+    "Description" character(300) COLLATE pg_catalog."default" NOT NULL,
+    "Duration" integer,
     "StartDate" date NOT NULL,
     "EndData" date NOT NULL,
     CONSTRAINT "Content_pkey" PRIMARY KEY ("Id")

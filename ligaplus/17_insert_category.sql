@@ -1,4 +1,5 @@
-DELETE FROM public."Category"; INSERT INTO public."Category" ("Id", "Description") VALUES (0, 'Baloncesto'),
+DELETE FROM public."Category"; INSERT INTO public."Category" ("Id", "Description") VALUES 
+(0, 'Baloncesto'),
 (1, 'Gimnasia'),
 (2, 'Motociclismo'),
 (3, 'Balonmano'),
