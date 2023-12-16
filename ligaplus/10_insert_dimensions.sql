@@ -65,3 +65,15 @@ FROM (
         '1900-01-01'::date, '2099-12-31'::date, interval '1 day'
     )::date AS date_sequence
 ) AS date_series;
+
+--- Greate Segment
+INSERT INTO public."Segment"("Id", "Description") VALUES 
+	(0, 'Jóven Consumo Alto'),
+	(1, 'Jóven Consumo Bajo'),
+	(2, 'Jóven Nuevo'),
+	(3, 'Adulto Consumo Alto'),
+	(4, 'Adulto Consumo Bajo'),
+	(5, 'Adulto Nuevo'),
+	(6, 'Adulto Mayor Consumo Alto'),
+	(7, 'Adulto Mayor Consumo Bajo'),
+	(8, 'Adulto Mayor Nuevo');
