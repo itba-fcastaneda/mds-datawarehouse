@@ -68,12 +68,12 @@ FROM (
 
 --- Greate Segment
 INSERT INTO public."Segment"("Id", "Description") VALUES 
-	(0, 'Jóven Consumo Alto'),
-	(1, 'Jóven Consumo Bajo'),
-	(2, 'Jóven Nuevo'),
-	(3, 'Adulto Consumo Alto'),
-	(4, 'Adulto Consumo Bajo'),
-	(5, 'Adulto Nuevo'),
-	(6, 'Adulto Mayor Consumo Alto'),
-	(7, 'Adulto Mayor Consumo Bajo'),
-	(8, 'Adulto Mayor Nuevo');
+	(1, 'Jóven Consumo Alto'),
+	(2, 'Jóven Consumo Bajo'),
+	(3, 'Jóven Nuevo'),
+	(4, 'Adulto Consumo Alto'),
+	(5, 'Adulto Consumo Bajo'),
+	(6, 'Adulto Nuevo'),
+	(7, 'Adulto Mayor Consumo Alto'),
+	(8, 'Adulto Mayor Consumo Bajo'),
+	(9, 'Adulto Mayor Nuevo');
