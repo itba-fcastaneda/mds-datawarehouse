@@ -36,22 +36,6 @@ VALUES
 (2, 'Standard', 'Este plan posee el contenido basico, mas una serie de eventos especiales dentro de los deportes nacionales mas vistos, como Petanca'),
 (3, 'Premium', 'Este es el plan mas caro de la plataforma, posee todo el contenido disponible a la fecha, sin limites');
 
-INSERT INTO public."Category" ("Id", "Description")
-VALUES
-(1, 'Futbol'),
-(2, 'Baloncesto'),
-(3, 'Tenis'),
-(4, 'Golf'),
-(5, 'Ciclismo'),
-(6, 'Automovilismo'),
-(7, 'Running'),
-(8, 'Voleibol'),
-(9, 'Balonmano'),
-(10, 'Petanca'),
-(11, 'Hockey'),
-(12, 'Motociclismo'),
-(13, 'Gimnasia'),
-(14, 'eSports');
 
 --- Create table time from 1900-01-01 to 2099-12-31
 INSERT INTO public."Time" ("Id", "Day", "Month", "Year")

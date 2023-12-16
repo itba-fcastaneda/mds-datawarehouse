@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 faker = "^21.0.0"
 jupyter = "^1.0.0"
+polars = "^0.20.0"
 
 
 [build-system]
