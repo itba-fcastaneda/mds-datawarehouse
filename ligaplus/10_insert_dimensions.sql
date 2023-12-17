@@ -37,19 +37,6 @@ VALUES
 (3, 'Premium', 'Este es el plan mas caro de la plataforma, posee todo el contenido disponible a la fecha, sin limites');
 
 
---- Create table time from 1900-01-01 to 2099-12-31
-INSERT INTO public."Time" ("Id", "Day", "Month", "Year")
-SELECT
-    date_sequence AS "Id",
-    EXTRACT(DAY FROM date_sequence) AS "Day",
-    EXTRACT(MONTH FROM date_sequence) AS "Month",
-    EXTRACT(YEAR FROM date_sequence) AS "Year"
-FROM (
-    SELECT generate_series(
-        '1900-01-01'::date, '2099-12-31'::date, interval '1 day'
-    )::date AS date_sequence
-) AS date_series;
-
 --- Greate Segment
 INSERT INTO public."Segment"("Id", "Description") VALUES 
 	(1, 'Jóven Consumo Alto'),

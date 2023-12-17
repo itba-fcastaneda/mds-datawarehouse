@@ -1,6 +1,6 @@
 DELETE FROM public."Content"; 
 INSERT INTO public."Content"( 
-"Id", "CategoryId", "Description", "Duration", "StartDate", "EndData") 
+"Id", "CategoryId", "Description", "Duration", "StartDate", "EndDate") 
 VALUES 
 (0, '12', '24h Series Dubái - Carrera', 94260, '2022-11-21', '2999-12-31'),
 (1, '12', '24h Series Dubái - Carrera (Parte 1)', 11887, '2022-11-14', '2999-12-31'),

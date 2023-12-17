@@ -3,10 +3,10 @@ CREATE TABLE IF NOT EXISTS public."User"
 (
     "Id" integer NOT NULL,
     "Name" character(80) COLLATE pg_catalog."default" NOT NULL,
-    "BirthDate" date NOT NULL,
+    "BirthDate" timestamp NOT NULL,
     "Gender" character(2) COLLATE pg_catalog."default",
-    "ValidFrom" date NOT NULL,
-    "ValidTo" date NOT NULL,
+    "ValidFrom" timestamp NOT NULL,
+    "ValidTo" timestamp NOT NULL,
     "LocationId" integer NOT NULL,
     "SegmentId" integer NOT NULL,
     CONSTRAINT "User_pkey" PRIMARY KEY ("Id")
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS public."UserSubscription"
 (
     "UserId" integer NOT NULL,
     "SubscriptionId" integer NOT NULL,
-    "ValidFrom" date NOT NULL,
-    "ValidTo" date NOT NULL,
+    "ValidFrom" timestamp NOT NULL,
+    "ValidTo" timestamp NOT NULL,
     PRIMARY KEY ("UserId", "SubscriptionId", "ValidFrom")
 );
 
@@ -59,18 +59,9 @@ CREATE TABLE IF NOT EXISTS public."Content"
     "CategoryId" integer NOT NULL,
     "Description" character(300) COLLATE pg_catalog."default" NOT NULL,
     "Duration" integer,
-    "StartDate" date NOT NULL,
-    "EndData" date NOT NULL,
+    "StartDate" timestamp NOT NULL,
+    "EndDate" timestamp NOT NULL,
     CONSTRAINT "Content_pkey" PRIMARY KEY ("Id")
-);
-
-CREATE TABLE IF NOT EXISTS public."Time"
-(
-    "Id" date NOT NULL,
-    "Day" integer NOT NULL,
-    "Month" integer NOT NULL,
-    "Year" integer NOT NULL,
-    CONSTRAINT "Time_pkey" PRIMARY KEY ("Id")
 );
 
 CREATE TABLE IF NOT EXISTS public."Position"
@@ -93,7 +84,7 @@ CREATE TABLE IF NOT EXISTS public."UserSearch"
 (
     "Id" integer NOT NULL,
     "UserId" integer NOT NULL,
-    "TimeId" date NOT NULL,
+    "TimeId" timestamp NOT NULL,
     "Query" character(128) COLLATE pg_catalog."default",
     CONSTRAINT "UserSearch_pkey" PRIMARY KEY ("Id")
 );
@@ -102,7 +93,7 @@ CREATE TABLE IF NOT EXISTS public."UserRecommendation"
 (
     "Id" integer NOT NULL,
     "UserId" integer NOT NULL,
-    "TimeId" date NOT NULL,
+    "TimeId" timestamp NOT NULL,
     "ContentId" integer NOT NULL,
     "PositionId" integer NOT NULL,
     CONSTRAINT "UserRecommendation_pkey" PRIMARY KEY ("Id")
@@ -112,7 +103,7 @@ CREATE TABLE IF NOT EXISTS public."ContentRating"
 (
     "ContentId" integer NOT NULL,
     "UserId" integer NOT NULL,
-    "TimeId" date NOT NULL,
+    "TimeId" timestamp NOT NULL,
     "Rating" integer NOT NULL,
     PRIMARY KEY ( "ContentId", "UserId")
 );
@@ -121,7 +112,7 @@ CREATE TABLE IF NOT EXISTS public."ContentUsage"
 (
     "ContentId" integer NOT NULL,
     "UserId" integer NOT NULL,
-    "TimeId" date NOT NULL,
+    "TimeId" timestamp NOT NULL,
     "Seconds" integer NOT NULL,
     PRIMARY KEY ( "ContentId", "UserId",  "TimeId")
 );
@@ -130,7 +121,7 @@ CREATE TABLE IF NOT EXISTS public."ContentHit"
 (
     "ContentId" integer NOT NULL,
     "UserId" integer NOT NULL,
-    "TimeId" date NOT NULL,
+    "TimeId" timestamp NOT NULL,
     "SearchId" integer NOT NULL,
     "RecommendationId" integer NOT NULL,
     PRIMARY KEY ( "ContentId", "UserId",  "TimeId")
@@ -144,7 +135,6 @@ ALTER TABLE IF EXISTS public."Subscription" OWNER to postgres;
 ALTER TABLE IF EXISTS public."UserSubscription" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Category" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Content" OWNER to postgres;
-ALTER TABLE IF EXISTS public."Time" OWNER to postgres;
 ALTER TABLE IF EXISTS public."Position" OWNER to postgres;
 ALTER TABLE IF EXISTS public."SearchResponse" OWNER to postgres;
 ALTER TABLE IF EXISTS public."UserSearch" OWNER to postgres;
@@ -199,20 +189,12 @@ ALTER TABLE IF EXISTS public."UserSearch"
     FOREIGN KEY("UserId") 
     REFERENCES "User"("Id");
 
-ALTER TABLE IF EXISTS public."UserSearch"
-    ADD CONSTRAINT "fk_time_search"
-    FOREIGN KEY("TimeId") 
-    REFERENCES "Time"("Id");
 
 ALTER TABLE IF EXISTS public."UserRecommendation"
     ADD CONSTRAINT "fk_user_recommendation"
     FOREIGN KEY("UserId") 
     REFERENCES "User"("Id");
 
-ALTER TABLE IF EXISTS public."UserRecommendation"
-    ADD CONSTRAINT "fk_time_recommendation"
-    FOREIGN KEY("TimeId") 
-    REFERENCES "Time"("Id");
 
 ALTER TABLE IF EXISTS public."UserRecommendation"
     ADD CONSTRAINT "fk_content_recommendation"
@@ -229,10 +211,7 @@ ALTER TABLE IF EXISTS public."ContentRating"
     FOREIGN KEY("UserId") 
     REFERENCES "User"("Id");
 
-ALTER TABLE IF EXISTS public."ContentRating"
-    ADD CONSTRAINT "fk_time_rating"
-    FOREIGN KEY("TimeId") 
-    REFERENCES "Time"("Id");
+
 
 ALTER TABLE IF EXISTS public."ContentRating"
     ADD CONSTRAINT "fk_content_rating"
@@ -244,10 +223,6 @@ ALTER TABLE IF EXISTS public."ContentUsage"
     FOREIGN KEY("UserId") 
     REFERENCES "User"("Id");
 
-ALTER TABLE IF EXISTS public."ContentUsage"
-    ADD CONSTRAINT "fk_time_usage"
-    FOREIGN KEY("TimeId") 
-    REFERENCES "Time"("Id");
 
 ALTER TABLE IF EXISTS public."ContentUsage"
     ADD CONSTRAINT "fk_content_usage"
@@ -259,10 +234,6 @@ ALTER TABLE IF EXISTS public."ContentHit"
     FOREIGN KEY("UserId") 
     REFERENCES "User"("Id");
 
-ALTER TABLE IF EXISTS public."ContentHit"
-    ADD CONSTRAINT "fk_time_hit"
-    FOREIGN KEY("TimeId") 
-    REFERENCES "Time"("Id");
 
 ALTER TABLE IF EXISTS public."ContentHit"
     ADD CONSTRAINT "fk_content_hit"
