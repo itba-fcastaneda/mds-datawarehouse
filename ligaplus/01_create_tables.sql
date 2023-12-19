@@ -59,8 +59,8 @@ CREATE TABLE IF NOT EXISTS public."Content"
     "CategoryId" integer NOT NULL,
     "Description" character(300) COLLATE pg_catalog."default" NOT NULL,
     "Duration" integer,
-    "StartDate" timestamp NOT NULL,
-    "EndDate" timestamp NOT NULL,
+    "StartDate" timestamp ,
+    "EndDate" timestamp ,
     CONSTRAINT "Content_pkey" PRIMARY KEY ("Id")
 );
 
