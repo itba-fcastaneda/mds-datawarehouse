@@ -122,8 +122,8 @@ CREATE TABLE IF NOT EXISTS public."ContentHit"
     "ContentId" integer NOT NULL,
     "UserId" integer NOT NULL,
     "TimeId" timestamp NOT NULL,
-    "SearchId" integer NOT NULL,
-    "RecommendationId" integer NOT NULL,
+    "SearchId" integer ,
+    "RecommendationId" integer ,
     PRIMARY KEY ( "ContentId", "UserId",  "TimeId")
 );
 
